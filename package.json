@@ -1,0 +1,55 @@
+{
+  "name": "typescript-gulp-stylus-karma-amd",
+  "description": "Empty project for Single Page Application. Stack technologies: Gulp, TypeScript, RequireJS, Jasmine, Karma, Stylus",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Mikhail Bodrov <connormiha1@gmail.com>",
+  "engines": {
+    "node": ">=4.2.1",
+    "npm": ">=2.14.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Connormiha/typescript-gulp-stylus-karma-amd.git"
+  },
+  "keywords": [
+    "spa",
+    "typescript",
+    "jasmine",
+    "stylus",
+    "karma",
+    "requirejs",
+    "amd"
+  ],
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-typescript": "2.9.2",
+    "gulp-stylus": "2.1.0",
+    "gulp-minify-html": "1.0.4",
+    "gulp-concat": "2.6.0",
+    "gulp-uglify": "1.4.2",
+    "gulp-if-else": "1.0.3",
+    "gulp-tslint": "^3.3.1",
+    "gulp-add-src": "0.2.0",
+    "gulp-replace": "0.5.4",
+    "amd-optimize": "0.6.1",
+    "karma": "^0.13.11",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "0.2.1",
+    "karma-chrome-launcher": "^0.2.1",
+    "ncp": "2.0.0",
+    "phantomjs": "^1.9.18",
+    "jasmine-core": "^2.3.4",
+    "http-server": "^0.8.5",
+    "del": "2.0.2",
+    "bower": "^1.6.3",
+    "tsd": "^0.6.5"
+  },
+  "scripts": {
+    "postinstall": "node node_modules/bower/bin/bower install && node node_modules/tsd/build/cli.js install",
+    "start": "node node_modules/http-server/bin/http-server deploy -p 8000 -s -c-1",
+    "test": "node node_modules/gulp/bin/gulp.js test",
+    "build": "node node_modules/gulp/bin/gulp.js build",
+    "deploy": "node node_modules/gulp/bin/gulp.js"
+  }
+}

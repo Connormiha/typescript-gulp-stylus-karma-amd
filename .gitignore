@@ -1,0 +1,9 @@
+.idea
+.DS_Store
+/node_modules
+/build
+/deploy
+/typings
+npm-debug.log
+/frontend-libs
+/test/_*
