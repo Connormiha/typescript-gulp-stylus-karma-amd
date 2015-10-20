@@ -5,12 +5,12 @@ Hello world simple page application.
 **TypeScript** - compile to ES5, AMD modules  
 **Stylus** - css preprocessor  
 **Gulp** - build manager  
-**Karma** - Unit tests runner  
-**Jasmine** - Unit tests library  
+**Karma** - unit tests runner  
+**Jasmine** - unit tests library  
 **Bower** - frontend package manager  
 **tsd** - DefinitelyTyped libs manager
 
-Only for Node.js 4+, because every Gulp tasks were written on ES6
+Only for Node.js 4+, because every Gulp task was written in ES6
 ### Install
 ```
 npm install
@@ -32,7 +32,7 @@ Run http server
 npm start
 ```
 
-Compile data for http server.. (Puts in /deploy folder)
+Compile data for http server.. (Are put into ./deploy folder)
 ```
 npm run deploy
 ```
@@ -42,7 +42,7 @@ Run unit test
 npm test
 ```
 
-Compile build. (Puts in /build folder)
+Compile build. (Are put into ./build folder)
 ```
 npm run build
 ```
