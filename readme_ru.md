@@ -1,6 +1,6 @@
 # typescript-gulp-stylus-karma-amd
 
-Пустой Hello world SPA проект. Используется следующий стек технологий:
+Пустой Hello world SPA проект. Используется следующий стек технологий:  
 **TypeScript** - собирается в ES5 с AMD модулями(RequireJS)  
 **Stylus** - css препроцессор  
 **Gulp** - сборщик  
