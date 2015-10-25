@@ -3,6 +3,7 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const stylus = require('gulp-stylus');
+const stylint = require('gulp-stylint');
 const minifyHTML = require('gulp-minify-html');
 const amdOptimize = require("amd-optimize");
 const concat = require('gulp-concat');
@@ -89,13 +90,29 @@ gulp.task('copylibs', ['clean'], ()=>{
 
 /**
  *
- * Проверка TypeScript валидатором
+ * @desc Check TypeScript validation
  */
 gulp.task('tslint', ()=> 
     gulp.src(['src/ts/*.{ts,tsx}'])
         .pipe(tslint())
+        .pipe(tslint.report('verbose'))
 );
 
+/**
+ *
+ * @desc Check stylus validation
+ */
+gulp.task('styluslint', ()=> 
+    gulp.src(['src/style/*.styl'])
+        .pipe(stylint())
+        .pipe(stylint.reporter())
+);
+
+/**
+*
+* @desc validation Stylus and TypeScript
+*/
+gulp.task('lint', ['tslint', 'styluslint']);
 
 gulp.task('test-prepare-ts', ['test-clean'], ()=> {
     return gulp.src(['src/ts/*.{ts,tsx}'])
@@ -132,3 +149,5 @@ gulp.task('test', ['test-clean', 'test-prepare-ts', 'test-prepare-css'], (done)=
 gulp.task('default', ['clean', 'typescript', 'css', 'html', 'copylibs']);
 
 gulp.task('build', ['clean', 'typescript', 'css', 'html']);
+
+gulp.task('lint', ['tslint']);
