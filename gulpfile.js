@@ -16,7 +16,7 @@ const ncp = require('ncp').ncp;
 const del = require('del');
 
 //If run task bulid
-const PRODUCTION = process.argv.indexOf('build') !== -1;
+const PRODUCTION = process.argv.includes('build');
 //folder for compiling
 const FOLDER = PRODUCTION ? './build' : './deploy';
 
@@ -125,9 +125,7 @@ gulp.task('test-clean', ()=> {
 gulp.task('test', ['test-clean', 'test-prepare-ts', 'test-prepare-css'], (done)=> {
     new karma({
         configFile: __dirname + '/karma.conf.js'
-    }, function() {
-        done();
-    }).start();
+    }, done).start();
 });
 
 
