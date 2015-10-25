@@ -34,7 +34,7 @@ gulp.task('clean', ()=> {
  * @desc Compile TypeScript
  * @desc If wa are compiling build, then concat in all minifire file + prepend almond library
  */
-gulp.task('typescript', ()=> {
+gulp.task('typescript', ['clean'], ()=> {
 
     return gulp.src(['src/ts/*.{ts,tsx}', '!src/ts/*.test.{ts,tsx}'])
         .pipe(ts({
@@ -54,7 +54,7 @@ gulp.task('typescript', ()=> {
  *
  * Собираем Stylus
  */
-gulp.task('css',()=> {
+gulp.task('css', ['clean'], ()=> {
     return gulp.src(['src/style/style.styl'])
         .pipe(ifElse(PRODUCTION,
             ()=> stylus({
@@ -69,7 +69,7 @@ gulp.task('css',()=> {
  *
  * Минификация html
  */
-gulp.task('html', ()=> {
+gulp.task('html', ['clean'], ()=> {
     return gulp.src(['src/html/*.html'])
         .pipe(ifElse(PRODUCTION, ()=>
             replace('frontend-libs/requirejs/require.js" data-main="js/main"', 'js/main.js"')
@@ -83,7 +83,7 @@ gulp.task('html', ()=> {
         .pipe(gulp.dest(`${FOLDER}`));
 });
 
-gulp.task('copylibs', ()=>{
+gulp.task('copylibs', ['clean'], ()=>{
     ncp("./frontend-libs", `${FOLDER}/frontend-libs`);
 });
 
@@ -97,7 +97,7 @@ gulp.task('tslint', ()=>
 );
 
 
-gulp.task('test-prepare-ts', ()=> {
+gulp.task('test-prepare-ts', ['test-clean'], ()=> {
     return gulp.src(['src/ts/*.{ts,tsx}'])
         .pipe(ts({
             module: 'amd',
@@ -107,7 +107,7 @@ gulp.task('test-prepare-ts', ()=> {
         .pipe(gulp.dest(`./test/_src/js`));
 });
 
-gulp.task('test-prepare-css', ()=> {
+gulp.task('test-prepare-css', ['test-clean'], ()=> {
     return gulp.src(['src/style/style.styl'])
         .pipe(stylus())
         .pipe(gulp.dest(`./test/_src/css`));
