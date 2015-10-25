@@ -1,6 +1,6 @@
 {
-  "name": "WordsGame",
-  "description": "Browser Words Game",
+  "name": "typescript-gulp-stylus-karma-amd",
+  "description": "Libs for empty project for Single Page Application",
   "dependencies": {
       "requirejs": "2.1.20",
       "almond": "0.3.1"
