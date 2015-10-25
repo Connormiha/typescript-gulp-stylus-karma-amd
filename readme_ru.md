@@ -45,3 +45,8 @@ npm test
 ```
 npm run build
 ```
+
+Проверка TypeScript и Stylus кода на валидацию через линтер
+```
+npm run lint
+```

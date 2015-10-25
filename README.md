@@ -46,3 +46,8 @@ Compile build. (Are put into ./build folder)
 ```
 npm run build
 ```
+
+Check TypsScript and Stylus code validation
+```
+npm run lint
+```
