@@ -8,7 +8,8 @@ Hello world simple page application.
 **Karma** - unit tests runner  
 **Jasmine** - unit tests library  
 **Bower** - frontend package manager  
-**tsd** - DefinitelyTyped libs manager
+**tsd** - DefinitelyTyped libs manager  
+**tslint, stylint** - TypeScript and Stylus code validation
 
 Only for Node.js 4+, because every Gulp task was written in ES6
 ### Install

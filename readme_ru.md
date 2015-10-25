@@ -7,7 +7,8 @@
 **Karma** - Запускает юнит тесты  
 **Jasmine** - Библиотека для юнит тестов  
 **Bower** - менеджер библиотек для фронтэнд  
-**tsd** - Загружает d.ts файлы из DefinitelyTyped
+**tsd** - Загружает d.ts файлы из DefinitelyTyped  
+**tslint, stylint** - валидация кода TypeScript и Stylus
 
 Только для node.js начиная 4 версии, т.к. везде используется ES6
 ### Установка
