@@ -30,7 +30,7 @@
     "gulp-concat": "2.6.0",
     "gulp-uglify": "1.5.1",
     "gulp-if-else": "1.0.3",
-    "gulp-tslint": "^4.1.1",
+    "gulp-tslint": "^4.1.2",
     "gulp-add-src": "0.2.0",
     "gulp-replace": "0.5.4",
     "amd-optimize": "0.6.1",
@@ -43,9 +43,9 @@
     "jasmine-core": "^2.4.1",
     "http-server": "^0.8.5",
     "del": "^2.2.0",
-    "bower": "^1.6.9",
+    "bower": "^1.7.1",
     "tsd": "^0.6.5",
-    "tslint": "3.1.1"
+    "tslint": "^3.2.0"
   },
   "scripts": {
     "postinstall": "node node_modules/bower/bin/bower install && node node_modules/tsd/build/cli.js install",
