@@ -92,7 +92,7 @@ gulp.task('copylibs', ['clean'], ()=>{
  *
  * @desc Check TypeScript validation
  */
-gulp.task('tslint', ()=> 
+gulp.task('tslint', ()=>
     gulp.src(['src/ts/*.{ts,tsx}'])
         .pipe(tslint())
         .pipe(tslint.report('verbose'))
@@ -102,7 +102,7 @@ gulp.task('tslint', ()=>
  *
  * @desc Check stylus validation
  */
-gulp.task('styluslint', ()=> 
+gulp.task('styluslint', ()=>
     gulp.src(['src/style/*.styl'])
         .pipe(stylint())
         .pipe(stylint.reporter())

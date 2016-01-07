@@ -7,6 +7,9 @@
   "installed": {
     "jasmine/jasmine.d.ts": {
       "commit": "54f064352a3615443f7bff4198078db15e28247b"
+    },
+    "es6-shim/es6-shim.d.ts": {
+      "commit": "81b951f1ac437d1eb5ff5171a0bfa6c467634b13"
     }
   }
 }
