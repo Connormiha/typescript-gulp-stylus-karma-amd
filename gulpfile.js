@@ -12,6 +12,7 @@ const uglify = require('gulp-uglify');
 const ifElse = require('gulp-if-else');
 const tslint = require('gulp-tslint');
 const replace = require('gulp-replace');
+const minifyCssNames = require('gulp-minify-cssnames');
 const karma = require("karma").Server;
 const ncp = require('ncp').ncp;
 const del = require('del');
@@ -88,6 +89,12 @@ gulp.task('copylibs', ['clean'], ()=>{
     ncp("./frontend-libs", `${FOLDER}/frontend-libs`);
 });
 
+gulp.task('minifyCssNames', ['html', 'css', 'typescript'], ()=>
+    gulp.src([`${FOLDER}/*.html`, `${FOLDER}/css/*.css`, `${FOLDER}/js/*.js`], { base: 'client' })
+        .pipe(minifyCssNames())
+        .pipe(gulp.dest(`${FOLDER}`))
+);
+
 /**
  *
  * @desc Check TypeScript validation
@@ -148,6 +155,6 @@ gulp.task('test', ['test-clean', 'test-prepare-ts', 'test-prepare-css'], (done)=
 
 gulp.task('default', ['clean', 'typescript', 'css', 'html', 'copylibs']);
 
-gulp.task('build', ['clean', 'typescript', 'css', 'html']);
+gulp.task('build', ['clean', 'typescript', 'css', 'html', 'minifyCssNames']);
 
 gulp.task('lint', ['tslint']);

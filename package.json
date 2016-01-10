@@ -29,6 +29,7 @@
     "gulp-add-src": "^0.2.0",
     "gulp-concat": "^2.6.0",
     "gulp-if-else": "^1.0.3",
+    "gulp-minify-cssnames": "^1.0.1",
     "gulp-minify-html": "^1.0.5",
     "gulp-replace": "^0.5.4",
     "gulp-stylint": "^3.0.0",
