@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const stylus = require('gulp-stylus');
 const stylint = require('gulp-stylint');
-const minifyHTML = require('gulp-minify-html');
+const htmlmin = require('gulp-htmlmin');
 const amdOptimize = require("amd-optimize");
 const concat = require('gulp-concat');
 const addsrc = require('gulp-add-src');
@@ -77,9 +77,13 @@ gulp.task('html', ['clean'], ()=> {
             replace('frontend-libs/requirejs/require.js" data-main="js/main"', 'js/main.js"')
         ))
         .pipe(ifElse(PRODUCTION, ()=>
-            minifyHTML({
-                empty: true,
-                loose: true
+            htmlmin({
+                removeComments: true,
+                removeCommentsFromCDATA: true,
+                removeCDATASectionsFromCDATA: true,
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                preserveLineBreaks: true
             })
         ))
         .pipe(gulp.dest(`${FOLDER}`));
