@@ -90,7 +90,7 @@ gulp.task('copylibs', ['clean'], ()=>{
 });
 
 gulp.task('minifyCssNames', ['html', 'css', 'typescript'], ()=>
-    gulp.src([`${FOLDER}/*.html`, `${FOLDER}/css/*.css`, `${FOLDER}/js/*.js`], { base: 'client' })
+    gulp.src([`${FOLDER}/*.html`, `${FOLDER}/css/*.css`, `${FOLDER}/js/*.js`], { base: `${FOLDER}` })
         .pipe(minifyCssNames())
         .pipe(gulp.dest(`${FOLDER}`))
 );
