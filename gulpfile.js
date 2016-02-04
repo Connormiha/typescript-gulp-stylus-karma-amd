@@ -42,7 +42,10 @@ gulp.task('typescript', ['clean'], ()=> {
         .pipe(ts({
             module: 'amd',
             target: 'es5',
-            jsx: 'react'
+            jsx: 'react',
+            files: [
+                './typings/browser.d.ts'
+            ]
         }))
         .pipe(ifElse(PRODUCTION, ()=> amdOptimize('main')))
         .pipe(ifElse(PRODUCTION, ()=> addsrc.prepend('frontend-libs/almond/almond.js')))
@@ -130,7 +133,10 @@ gulp.task('test-prepare-ts', ['test-clean'], ()=> {
         .pipe(ts({
             module: 'amd',
             target: 'es5',
-            jsx: 'react'
+            jsx: 'react',
+            files: [
+                './typings/browser.d.ts'
+            ]
         }))
         .pipe(gulp.dest(`./test/_src/js`));
 });
