@@ -39,6 +39,7 @@ gulp.task('clean', () => {
 gulp.task('typescript', ['clean'], ()=> {
 
     return gulp.src(['src/ts/*.{ts,tsx}', '!src/ts/*.test.{ts,tsx}'])
+        .pipe(ifElse(!PRODUCTION, () => sourcemaps.init()))
         .pipe(ts({
             module: 'amd',
             target: 'es5',
@@ -52,6 +53,7 @@ gulp.task('typescript', ['clean'], ()=> {
         .pipe(ifElse(PRODUCTION, ()=> concat('main.js')))
         .pipe(ifElse(PRODUCTION, ()=> replace(/$/, 'require("main");')))
         .pipe(ifElse(PRODUCTION, uglify))
+        .pipe(ifElse(!PRODUCTION, () => sourcemaps.write()))
         .pipe(gulp.dest(`${FOLDER}/js`));
 });
 
@@ -60,19 +62,13 @@ gulp.task('typescript', ['clean'], ()=> {
  * Собираем Stylus
  */
 gulp.task('css', ['clean'], ()=> {
-    let pipeline = gulp.src(['src/style/style.styl']);
-
-    if (PRODUCTION) {
-        pipeline = pipeline.pipe(stylus({
+    return gulp.src('src/style/style.styl')
+        .pipe(ifElse(!PRODUCTION, () => sourcemaps.init()))
+        .pipe(ifElse(PRODUCTION, () => stylus({
                     compress: true
-                }));
-    } else {
-        pipeline = pipeline.pipe(sourcemaps.init())
-            .pipe(stylus())
-            .pipe(sourcemaps.write());
-    }
-
-    return pipeline.pipe(gulp.dest(`${FOLDER}/css`));
+                }), stylus))
+        .pipe(ifElse(!PRODUCTION, () => sourcemaps.write()))
+        .pipe(gulp.dest(`${FOLDER}/css`));
 });
 
 /**
