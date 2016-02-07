@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const stylus = require('gulp-stylus');
 const stylint = require('gulp-stylint');
+const sourcemaps = require('gulp-sourcemaps');
 const htmlmin = require('gulp-htmlmin');
 const amdOptimize = require("amd-optimize");
 const concat = require('gulp-concat');
@@ -14,7 +15,6 @@ const tslint = require('gulp-tslint');
 const replace = require('gulp-replace');
 const minifyCssNames = require('gulp-minify-cssnames');
 const karma = require("karma").Server;
-const ncp = require('ncp').ncp;
 const del = require('del');
 
 //If run task bulid
@@ -27,8 +27,8 @@ const FOLDER = PRODUCTION ? './build' : './deploy';
  *
  * Очищаем папку
  */
-gulp.task('clean', ()=> {
-    del([FOLDER]);
+gulp.task('clean', () => {
+    return del([FOLDER]);
 });
 
 /**
@@ -60,14 +60,19 @@ gulp.task('typescript', ['clean'], ()=> {
  * Собираем Stylus
  */
 gulp.task('css', ['clean'], ()=> {
-    return gulp.src(['src/style/style.styl'])
-        .pipe(ifElse(PRODUCTION,
-            ()=> stylus({
+    let pipeline = gulp.src(['src/style/style.styl']);
+
+    if (PRODUCTION) {
+        pipeline = pipeline.pipe(stylus({
                     compress: true
-                })
-            ,
-            stylus))
-        .pipe(gulp.dest(`${FOLDER}/css`));
+                }));
+    } else {
+        pipeline = pipeline.pipe(sourcemaps.init())
+            .pipe(stylus())
+            .pipe(sourcemaps.write());
+    }
+
+    return pipeline.pipe(gulp.dest(`${FOLDER}/css`));
 });
 
 /**
@@ -92,8 +97,9 @@ gulp.task('html', ['clean'], ()=> {
         .pipe(gulp.dest(`${FOLDER}`));
 });
 
-gulp.task('copylibs', ['clean'], ()=>{
-    ncp("./frontend-libs", `${FOLDER}/frontend-libs`);
+gulp.task('copylibs', ['clean'], () => {
+    return gulp.src('./frontend-libs/**/*')
+        .pipe(gulp.dest(`${FOLDER}/frontend-libs`));
 });
 
 gulp.task('minifyCssNames', ['html', 'css', 'typescript'], ()=>
@@ -151,8 +157,8 @@ gulp.task('test-prepare-css', ['test-clean'], ()=> {
  *
  * Очищаем папку
  */
-gulp.task('test-clean', ()=> {
-    del('./test/_src');
+gulp.task('test-clean', () => {
+    return del('./test/_src');
 });
 
 
